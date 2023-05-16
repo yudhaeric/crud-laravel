@@ -10,8 +10,12 @@ use App\Http\Requests\StudentCreateRequest;
 
 class StudentController extends Controller
 {
-    public function index() {
-        $student = Student::paginate(5);
+    public function index(Request $request) {
+        $keyword = $request->keyword;
+        $student = Student::where('name', 'LIKE', '%'.$keyword.'%')
+                    ->orWhere('address', 'LIKE', '%'.$keyword.'%')
+                    ->orWhere('nim', 'LIKE', '%'.$keyword.'%') // Memakai LIKE agar keyword tidak spesifik, bisa mencari beberapa kata saja
+                    ->paginate(5);
         return view('student', ['studentList' => $student]);
     }
 
