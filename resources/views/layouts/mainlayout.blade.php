@@ -11,9 +11,9 @@
 <body style="background-color: #FFEEB3;">
     <nav class="navbar navbar-expand-lg bg-warning bg-gradient">
         <div class="container">
-            <a class="navbar-brand" href="#">CRUD</a>
+            <a class="navbar-brand" href="/">CRUD</a>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="/students">Student</a>
                     </li>
@@ -22,6 +22,11 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/classrooms">Class Room</a>
+                    </li>
+                </ul>                    
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
                     </li>
                 </ul>
             </div>
