@@ -15,7 +15,7 @@
             </div>
         @endif
         <div class="mt-3 col-6 m-auto">
-            <form action="student" method="post">
+            <form action="student" method="post" enctype="multipart/form-data">
                 @csrf
                 <div>
                     <label for="nim" class="my-2">NIM</label>
@@ -49,7 +49,12 @@
                         <option value="2">2</option>
                     </select>
                 </div>
-
+                <div class="mt-1">
+                    <label for="active" class="mb-1">Photo</label>
+                    <div class="input-group">
+                        <input type="file" class="form-control" id="photo" name="photo">
+                    </div>
+                </div>
                 <div class="my-3 mb-5">
                     <button class="btn btn-success" type="submit">Simpan</button>
                 </div>

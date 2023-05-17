@@ -42,15 +42,29 @@ class StudentController extends Controller
         // $student->active = $request->active;
         // $student->save();
 
-        // Bisa pakai mass assignment tapi perlu mendaftarkan nya ke Models
+        $newName = '';
+    
+        if($request->file('photo')) {
+            // Mengambil format foto yang di upload
+            $extension = $request->file('photo')->getClientOriginalExtension();
+            // Merename foto yang di upload
+            $newName = $request->name.'-'.now()->timestamp.'.'.$extension;
+            // Berfungsi untuk menyimpan upload foto, jika tidak ingin ada namanya bisa langsung "store('photo')"
+            $request->file('photo')->storeAS('photo', $newName);
+        }
+
+        // Send data ke database pakai mass assignment, perlu mendaftarkan nya ke Models
+        $request['image'] = $newName;
         $student = Student::create($request->all());
+        
         if($student) {
             Session::flash('status', 'success');
             Session::flash('message', 'Tambah Mahasiswa Berhasil');
         }
+
         return redirect("/students");
     }
-
+    
     public function edit($id) {
         $student = Student::findOrFail($id);
         return view('/student-edit', ['student' => $student]);

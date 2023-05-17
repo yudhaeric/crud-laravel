@@ -17,5 +17,6 @@ class Student extends Model
         'address',
         'class_id',
         'active',
+        'image',
     ];
 }
