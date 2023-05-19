@@ -18,12 +18,12 @@ use App\Http\Controllers\ClassroomsController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->middleware('auth'); 
 
 // Login
 Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
-Route::post('/login', [AuthController::class, 'authentication']);
+Route::post('/login', [AuthController::class, 'authentication'])->middleware('guest');
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 // Student CRUD
