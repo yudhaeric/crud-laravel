@@ -28,25 +28,25 @@ Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 // Student CRUD
 // Create
-Route::get('/student-add', [StudentController::class, 'create'])->middleware('auth');
+Route::get('/student-add', [StudentController::class, 'create'])->middleware('auth', 'must-admin-or-lecturer');
 // Saat di klik submit dia masuk ke route ini tapi tidak redirect ke /student
 // langsung membaca controller store
-Route::post('/student', [StudentController::class, 'store'])->middleware('auth');
+Route::post('/student', [StudentController::class, 'store'])->middleware('auth', 'must-admin-or-lecturer');
 // Read
-Route::get('/students', [StudentController::class, 'index'])->middleware('auth')->middleware('auth');
-Route::get('/student/{id}', [StudentController::class, 'detail'])->middleware('auth');
+Route::get('/students', [StudentController::class, 'index'])->middleware('auth');
+Route::get('/student/{id}', [StudentController::class, 'detail'])->middleware('auth', 'must-admin-or-lecturer');
 // Update
-Route::get('/student-edit/{id}', [StudentController::class, 'edit'])->middleware('auth');
+Route::get('/student-edit/{id}', [StudentController::class, 'edit'])->middleware('auth', 'must-admin-or-lecturer');
 // Saat di klik submit dia masuk ke route ini tapi tidak redirect ke /student/{id}
 // langsung membaca controller update
-Route::put('/student/{id}', [StudentController::class, 'update'])->middleware('auth');
+Route::put('/student/{id}', [StudentController::class, 'update'])->middleware('auth', 'must-admin-or-lecturer');
 // Delete
-Route::get('/student-delete/{id}', [StudentController::class, 'delete'])->middleware('auth');
+Route::get('/student-delete/{id}', [StudentController::class, 'delete'])->middleware(['auth', 'must-admin']);
 // Saat di klik submit dia masuk ke route ini tapi tidak redirect ke /student-destroy/{id}
 // langsung membaca controller destroy
-Route::delete('/student-destroy/{id}', [StudentController::class, 'destroy'])->middleware('auth');
-Route::get('/student-delete-list', [StudentController::class, 'deletedStudent'])->middleware('auth');
-Route::get('/student/{id}/restore', [StudentController::class, 'restore'])->middleware('auth');
+Route::delete('/student-destroy/{id}', [StudentController::class, 'destroy'])->middleware(['auth', 'must-admin']);
+Route::get('/student-delete-list', [StudentController::class, 'deletedStudent'])->middleware(['auth', 'must-admin']);
+Route::get('/student/{id}/restore', [StudentController::class, 'restore'])->middleware(['auth', 'must-admin']);
 
 // Lecturer CRUD
 // Create
