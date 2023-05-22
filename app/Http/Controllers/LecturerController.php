@@ -8,8 +8,12 @@ use Illuminate\Support\Facades\Session;
 
 class LecturerController extends Controller
 {
-    public function index() {
-        $lecturer = Lecturer::paginate(10);
+    public function index(Request $request) {
+        $keyword = $request->keyword;
+        $lecturer = Lecturer::where('nidn', 'LIKE', '%'.$keyword.'%')
+                    ->orWhere('name', 'LIKE', '%'.$keyword.'%')
+                    ->orWhere('course', 'LIKE', '%'.$keyword.'%') // Memakai LIKE agar keyword tidak spesifik, bisa mencari beberapa kata saja
+                    ->paginate(10);
         return view('lecturer', ['lecturerList' => $lecturer]);
     }
 
@@ -31,7 +35,7 @@ class LecturerController extends Controller
         return redirect("/lecturer");
     }
 
-    public function edit(Request $request, $id) {
+    public function edit($id) {
         $lecturer = Lecturer::findOrFail($id);
         return view('/lecturer-edit', ['lecturer' => $lecturer]);
     }
