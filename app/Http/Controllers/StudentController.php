@@ -15,7 +15,7 @@ class StudentController extends Controller
         $student = Student::where('name', 'LIKE', '%'.$keyword.'%')
                     ->orWhere('address', 'LIKE', '%'.$keyword.'%')
                     ->orWhere('nim', 'LIKE', '%'.$keyword.'%') // Memakai LIKE agar keyword tidak spesifik, bisa mencari beberapa kata saja
-                    ->paginate(5);
+                    ->paginate(10);
         return view('student', ['studentList' => $student]);
     }
 
