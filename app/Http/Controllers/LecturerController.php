@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 class LecturerController extends Controller
 {
     public function index() {
-        $lecturer = Lecturer::paginate(5);
+        $lecturer = Lecturer::paginate(10);
         return view('lecturer', ['lecturerList' => $lecturer]);
     }
 

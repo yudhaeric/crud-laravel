@@ -4,9 +4,9 @@
 
 @section('content')
     <h3>Data Dosen</h3>
-    <div class="d-flex justify-content-between">
-        <a href="/lecturer-add" class="btn btn-primary my-3">Tambah Data</a>
-        <a href="/lecturer-delete-list" class="btn btn-info my-3">Lihat Data Terhapus</a>
+    <div class="my-3">
+        <a href="/lecturer-add" class="btn btn-primary">Tambah Data</a>
+        <a href="/lecturer-delete-list" class="btn btn-success">Lihat Data Terhapus</a>
     </div>
     @if (Session::has('status'))
         <div class="alert alert-success" role="alert">
