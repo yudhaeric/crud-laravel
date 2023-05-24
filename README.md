@@ -1,6 +1,6 @@
-## School CRUD | Still Progress
+## Simple CRUD
 
-My learning project with laravel, creating a simple CRUD
+My learning project with laravel
 
 **Live URL:** https://simplycrud.000webhostapp.com/
 
